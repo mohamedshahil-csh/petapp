@@ -13,6 +13,7 @@ const PasswordInput = ({ value, onChangeText, placeholder }) => {
                 secureTextEntry={!showPassword}
                 value={value}
                 onChangeText={onChangeText}
+                placeholderTextColor="#A9A9A9"
             />
             <Ionicons
                 name={showPassword ? 'eye-off' : 'eye'}
@@ -70,11 +71,13 @@ const styles = StyleSheet.create({
         justifyContent: 'top',
         alignItems: 'center',
         padding: 20,
+        backgroundColor: '#FFFFFF',
     },
     header: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        color: '#333333',
     },
     inputContainer: {
         flexDirection: 'row',
@@ -85,10 +88,16 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderRadius: 5,
         paddingHorizontal: 10,
+        marginBottom: 20,
+        borderWidth: 1,
+        borderColor: '#CCCCCC',
+        borderRadius: 8,
+        paddingHorizontal: 12,
     },
     input: {
         flex: 1,
         height: 40,
+        color: '#333333',
     },
     eyeIcon: {
         padding: 10,
