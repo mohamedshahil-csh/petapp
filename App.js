@@ -37,11 +37,9 @@ const CustomDrawerContent = (props) => {
         <Text style={styles.profileName}>Ms Dhoni</Text>
         <Text style={styles.profileProfession}>Indian Cricketer </Text>
       </View>
-      <DrawerItem
+      <DrawerItem 
         label="Home"
         onPress={() => props.navigation.navigate('Home')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialCommunityIcons name="home" size={size} color={color} />
@@ -51,8 +49,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Blogs"
         onPress={() => props.navigation.navigate('Blogs')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <FontAwesome name="pencil" size={size} color={color} />
@@ -62,8 +58,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Shopping"
         onPress={() => props.navigation.navigate('Shopping')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <FontAwesome name="shopping-cart" size={size} color={color} />
@@ -74,8 +68,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="PetServices"
         onPress={() => props.navigation.navigate('PetServices')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialCommunityIcons name="paw" size={size} color={color} />
@@ -85,8 +77,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Settings"
         onPress={() => props.navigation.navigate('Setting')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialIcons name="settings" size={size} color={color} />
@@ -97,8 +87,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Appointment"
         onPress={() => props.navigation.navigate('Appointment')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <FontAwesome name="calendar" size={size} color={color} />
@@ -109,8 +97,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="MyPets"
         onPress={() => props.navigation.navigate('MyPets')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialCommunityIcons name="dog" size={size} color={color} />
@@ -121,8 +107,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Contact"
         onPress={() => props.navigation.navigate('Contact')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialIcons name="contacts" size={size} color={color} />
@@ -135,8 +119,6 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="News"
         onPress={() => props.navigation.navigate('News')}
-        activeTintColor="red"
-        inactiveTintColor="#000"
         labelStyle={styles.drawerLabel}
         icon={({ color, size }) => (
           <MaterialCommunityIcons name="newspaper" size={size} color={color} />
@@ -180,18 +162,72 @@ const CustomDrawerContent = (props) => {
 
 const DrawerNavigator = () => (
   <Drawer.Navigator drawerContent={CustomDrawerContent}>
-    <Drawer.Screen name="Home" component={Home} />
-    <Drawer.Screen name="Blogs" component={Blogs} />
-    <Drawer.Screen name="Shopping" component={Shopping} />
-    <Drawer.Screen name="PetServices" component={PetServices} />
-    <Drawer.Screen name="Setting" component={Setting} />
+    <Drawer.Screen name="Home" component={Home} options={{
+            title: 'Home',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }} />
+    <Drawer.Screen name="Blogs" component={Blogs} options={{
+            title: 'Blogs',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }} />
+    <Drawer.Screen name="Shopping" component={Shopping} options={{
+            title: 'Shopping',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }}/>
+    <Drawer.Screen name="PetServices" component={PetServices} options={{
+            title: 'PetServices',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }} />
+    <Drawer.Screen name="Setting" component={Setting} options={{
+            title: 'Setting',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }}/>
 
-    <Drawer.Screen name="MyPets" component={MyPets} />
+    <Drawer.Screen name="MyPets" component={MyPets} options={{
+            title: 'MyPets',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }}/>
 
 
-    <Drawer.Screen name="Appointment" component={Appointment} />
-    <Drawer.Screen name="News" component={News} />
-    <Drawer.Screen name="Contact" component={Contact} />
+    <Drawer.Screen name="Appointment" component={Appointment}options={{
+            title: 'Appointment',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }} />
+    <Drawer.Screen name="News" component={News} options={{
+            title: 'News',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }}/>
+    <Drawer.Screen name="Contact" component={Contact} options={{
+            title: 'Contact',
+            headerStyle: {
+            backgroundColor: '#FAE086', 
+            },
+            headerTintColor: '#fff', 
+          }} />
   </Drawer.Navigator>
 );
 
@@ -246,6 +282,7 @@ const styles = StyleSheet.create({
   drawerBackground: {
     backgroundColor: '#FAE086',
   },
+ 
 });
 
 export default App;
