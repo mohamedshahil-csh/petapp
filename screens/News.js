@@ -1,10 +1,10 @@
 import { View,Text } from "react-native";
 import React from "react";
 
-export default function GetPremium() {
+export default function News() {
     return (
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-            <Text>GetPremium </Text>
+            <Text>News </Text>
         </View>
     )
 }

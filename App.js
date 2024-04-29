@@ -1,184 +1,251 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import "react-native-gesture-handler";
-import { SafeAreaView } from 'react-native-safe-area-context';
+// Import necessary modules
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
-import { FontAwesome, MaterialCommunityIcons, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { StatusBar } from 'expo-status-bar';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { FontAwesome, MaterialCommunityIcons, MaterialIcons, SimpleLineIcons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
+
+
+
+
+import LoginScreen from './screens/LoginScreen';
 import Home from './screens/Home';
-import Timer from './screens/Timer';
-import Categories from './screens/Categories';
-import Customize from './screens/Customize';
+import Blogs from './screens/Blogs';
+import MyPets from './screens/MyPets';
+import Shopping from './screens/Shopping';
 import Setting from './screens/Setting';
-import Backups from './screens/Backups';
-import GetPremium from './screens/GetPremium';
-import RateApp from './screens/RateApp';
+import PetServices from './screens/PetServices';
+import Appointment from './screens/Appointment';
+import News from './screens/News';
 import Contact from './screens/Contact';
 
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+
+const CustomDrawerContent = (props) => {
+  return (
+    <DrawerContentScrollView {...props} style={styles.drawerBackground}>
+      <View style={styles.profileContainer}>
+        <Image
+          style={styles.profileImage}
+          source={{ uri: 'https://im.rediff.com/getahead/2013/oct/01m-s-dhoni-1.jpg?w=670&h=900' }}
+        />
+        <Text style={styles.profileName}>Ms Dhoni</Text>
+        <Text style={styles.profileProfession}>Indian Cricketer </Text>
+      </View>
+      <DrawerItem
+        label="Home"
+        onPress={() => props.navigation.navigate('Home')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+      <DrawerItem
+        label="Blogs"
+        onPress={() => props.navigation.navigate('Blogs')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <FontAwesome name="pencil" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+      <DrawerItem
+        label="Shopping"
+        onPress={() => props.navigation.navigate('Shopping')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <FontAwesome name="shopping-cart" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+
+      <DrawerItem
+        label="PetServices"
+        onPress={() => props.navigation.navigate('PetServices')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialCommunityIcons name="paw" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+      <DrawerItem
+        label="Settings"
+        onPress={() => props.navigation.navigate('Setting')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialIcons name="settings" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+
+      <DrawerItem
+        label="Appointment"
+        onPress={() => props.navigation.navigate('Appointment')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <FontAwesome name="calendar" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+
+      <DrawerItem
+        label="MyPets"
+        onPress={() => props.navigation.navigate('MyPets')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialCommunityIcons name="dog" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+
+      <DrawerItem
+        label="Contact"
+        onPress={() => props.navigation.navigate('Contact')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialIcons name="contacts" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+
+
+
+      <DrawerItem
+        label="News"
+        onPress={() => props.navigation.navigate('News')}
+        activeTintColor="red"
+        inactiveTintColor="#000"
+        labelStyle={styles.drawerLabel}
+        icon={({ color, size }) => (
+          <MaterialCommunityIcons name="newspaper" size={size} color={color} />
+        )}
+        style={styles.drawerItem}
+      />
+<DrawerItem
+  label="Sign Out"
+  onPress={() => {
+    // Your sign out logic here
+  }}
+  activeTintColor="red"
+  inactiveTintColor="#000"
+  labelStyle={{ ...styles.drawerLabel, color: 'red' }}
+  icon={({ color, size }) => (
+    <FontAwesome name="sign-out" size={size * 0.8} color="red" /> 
+  )}
+  style={{
+    ...styles.drawerItem,
+    backgroundColor: '#FFE5E5',
+    borderRadius: 20,
+    paddingVertical: 1, 
+    paddingHorizontal: 5, 
+    marginVertical: 45,
+    marginHorizontal: 45, 
+    borderBottomWidth: 0, 
+  }}
+/>
+
+
+
+
+
+
+
+
+
+    </DrawerContentScrollView>
+  );
+};
+
+const DrawerNavigator = () => (
+  <Drawer.Navigator drawerContent={CustomDrawerContent}>
+    <Drawer.Screen name="Home" component={Home} />
+    <Drawer.Screen name="Blogs" component={Blogs} />
+    <Drawer.Screen name="Shopping" component={Shopping} />
+    <Drawer.Screen name="PetServices" component={PetServices} />
+    <Drawer.Screen name="Setting" component={Setting} />
+
+    <Drawer.Screen name="MyPets" component={MyPets} />
+
+
+    <Drawer.Screen name="Appointment" component={Appointment} />
+    <Drawer.Screen name="News" component={News} />
+    <Drawer.Screen name="Contact" component={Contact} />
+  </Drawer.Navigator>
+);
+
+const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-      drawerContent={
-        (
-          (props) => {
-            return (
-              <SafeAreaView>
-                <View 
-                 style={{
-                  height: 200,
-                  width: '100%',
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderBottomColor: "#f4f4f4",
-                  borderBottomWidth: 1,
-                 }}
-                 > 
-                 <Image
-                //  source={User}
-                 source={{ uri: 'https://im.rediff.com/getahead/2013/oct/01m-s-dhoni-1.jpg?w=670&h=900' }}
-                 style = {
-                  {
-                    height: 130,
-                    width: 130,
-                    borderRadius: 65
-                  }
-                 }
-                 />
-                 <Text style={{fontSize: 22,marginVertical: 6, fontWeight: "bold",color:"#111"}}>
-                  Ms Dhoni
-                 </Text>
-                 <Text style={{fontSize: 16, color: "#111"}} >Indian Cricketer </Text>
-                 </View>
-                <DrawerItemList
-                {...props}
-                />
-              </SafeAreaView>
-            )
-          }
-        )
-      }
-        screenOptions={{
-          drawerStyle: {
-            backgroundColor: "#fff",
-            width: 250
-          },
-          headerStyle: {
-            backgroundColor: "#f4511e"
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold"
-          },
-          drawerActiveTintColor: "blue",
-          drawerLabelStyle: {
-            color: "#111"
-          }
-        }}
-      >
-        <Drawer.Screen
-          name='Home'
-          options={{
-            drawerLabel: "Home",
-            title: "Home",
-            drawerIcon: () => (
-              <SimpleLineIcons name='home' size={20} color="#808080"/>
-            )
-          }}
-          component={Home}
-        />
-         <Drawer.Screen
-          name='Blogs'
-          options={{
-            drawerLabel: "Blogs",
-            title: "Blogs",
-            drawerIcon: () => (
-              <MaterialIcons name='timer' size={20} color="#808080"/>
-            )
-          }}
-          component={Timer}
-        />
-        <Drawer.Screen
-          name='Categories'
-          options={{
-            drawerLabel: "Categories",
-            title: "Categories",
-            drawerIcon: () => (
-              <MaterialIcons name='category' size={20} color="#808080"/>
-            )
-          }}
-          component={Categories}
-        />
-         <Drawer.Screen
-          name='Customize'
-          options={{
-            drawerLabel: "Customize",
-            title: "Customize",
-            drawerIcon: () => (
-              <MaterialIcons name='dashboard-customize' size={20} color="#808080"/>
-            )
-          }}
-          component={Customize}
-        />
-         <Drawer.Screen
-          name='Settings'
-          options={{
-            drawerLabel: "Settings",
-            title: "Settings",
-            drawerIcon: () => (
-              <MaterialIcons name='settings' size={20} color="#808080"/>
-            )
-          }}
-          component={Setting}
-        />
-         <Drawer.Screen
-          name='Backups'
-          options={{
-            drawerLabel: "Backups",
-            title: "Backups",
-            drawerIcon: () => (
-              <MaterialIcons name='backup' size={20} color="#808080"/>
-            )
-          }}
-          component={Backups}
-        />
-           <Drawer.Screen
-          name='GetPremium'
-          options={{
-            drawerLabel: "Get Premium",
-            title: "Get Premium",
-            drawerIcon: () => (
-              <MaterialCommunityIcons name='certificate' size={20} color="#808080"/>
-            )
-          }}
-          component={GetPremium}
-        />
-          <Drawer.Screen
-          name='Rate this App'
-          options={{
-            drawerLabel: "Rate this App",
-            title: "Rate this App",
-            drawerIcon: () => (
-              <FontAwesome name='star' size={20} color="#808080"/>
-            )
-          }}
-          component={RateApp}
-        />
-         <Drawer.Screen
-          name='Contact'
-          options={{
-            drawerLabel: "Contact",
-            title: "Contact",
-            drawerIcon: () => (
-              <MaterialCommunityIcons name='message-alert-outline' size={20} color="#808080"/>
-            )
-          }}
-          component={Contact}
-        />
-      </Drawer.Navigator>
+      <StatusBar style="auto" />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="App" component={DrawerNavigator} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
+const styles = StyleSheet.create({
+  profileContainer: {
+    alignItems: 'center',
+    paddingVertical: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+  },
+  profileName: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  profileProfession: {
+    fontSize: 16,
+    color: '#777',
+  },
+  drawerLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333', 
+    textTransform: 'uppercase', 
+    letterSpacing: 1, 
+    marginLeft: 10, 
+  },
+  drawerItem: {
+    marginVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  drawerBackground: {
+    backgroundColor: '#FAE086',
+  },
+});
+
+export default App;

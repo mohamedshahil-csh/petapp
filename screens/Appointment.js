@@ -1,10 +1,10 @@
 import { View,Text } from "react-native";
 import React from "react";
 
-export default function Timer() {
+export default function Appointment() {
     return (
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-            <Text>Blogs </Text>
+            <Text>Appointment </Text>
         </View>
     )
 }
